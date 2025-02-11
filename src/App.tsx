@@ -8,6 +8,7 @@ import Experience from './pages/Experience';
 import FunCorner from './pages/FunCorner';
 import Navbar from './components/Navbar';
 import Chatbot from './components/Chatbot';
+import Services from './pages/Services';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/fun-corner" element={<FunCorner />} />
+          {/* <Route path="/services" element={<Services />} /> */}
         </Routes>
         <Chatbot />
       </div>
