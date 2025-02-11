@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
+import { motion } from 'framer-motion';
 import profilePhoto from '../images/RupeshPhoto.jpg';
+import RunningText from '../components/RunningText';
 
 interface Project {
   image: string | { default: string };
@@ -8,21 +10,36 @@ interface Project {
 }
 
 const Home = () => {
+  const [isHovering, setIsHovering] = useState(false);
+
   return (
     <div className="section min-h-screen flex items-center justify-center bg-gradient-to-br from-dark to-dark-lighter">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center animate-fade-in">
-          <img
-            src={typeof profilePhoto === 'string' ? profilePhoto : profilePhoto.default}
-            alt="Profile"
-            className="w-32 h-32 rounded-full mx-auto mb-8 border-4 border-primary shadow-lg hover:scale-105 transition-transform duration-300"
-          />
+          <motion.div
+            animate={{
+              rotate: isHovering ? 360 : 0,
+            }}
+            onHoverStart={() => setIsHovering(true)}
+            onHoverEnd={() => setIsHovering(false)}
+            transition={{
+              duration: 0.6,
+              ease: "easeInOut"
+            }}
+          >
+            <img
+              src={typeof profilePhoto === 'string' ? profilePhoto : profilePhoto.default}
+              alt="Profile"
+              className="w-32 h-32 rounded-full mx-auto mb-8 border-4 border-primary shadow-lg"
+            />
+          </motion.div>
+
           <h1 className="text-6xl font-bold text-white mb-4 animate-slide-up">
             Rupesh Dahibhate
           </h1>
-          <p className="text-2xl text-gray-300 mb-8">
-            Full Stack Developer | Designer | Problem Solver
-          </p>
+          <div className="mb-8">
+            <RunningText />
+          </div>
           <div className="flex justify-center space-x-6 mb-12">
             <a href="https://github.com/Rupesh2704" className="text-gray-400 hover:text-primary transition-colors transform hover:scale-110">
               <Github size={28} />
